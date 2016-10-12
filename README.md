@@ -1,5 +1,5 @@
 # SwipeableRV
-`SwipeableRV` is a library that provides a fast and convenient way to implement the 'wipe to dismiss' feature in Recycler View, as seen in apps such as Messenger.
+`SwipeableRV` is a library that provides a fast and convenient way to implement the 'swipe to dismiss' feature in Recycler View, as seen in apps such as Messenger.
 
 `SwipeableRV` wraps around `ItemTouchHelper` from the `Android Support Library`. Therefore, developers do not need to do any extra work on `ItemTouchHelper.Callback` themselve. Instead they can just focus on creating a recycler view, adapter, and view holder as normal, plus some minimal work on specifying some details such as supported swipe directions, deletion message or icon.
 
