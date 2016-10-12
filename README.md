@@ -191,3 +191,5 @@ compile 'io.huannguyen.swipeablerv:swipeable-rv:1.0.0'
 # Sample Project
 You can access a sample project using `SwipeableRV` from the `demo` module in this repo.
 
+# Contributions & Questions
+Any contribution is welcome. If you find a bug, please feel free to create an issue. If you have any suggestion/recommendation of new features or anything, shoot me an email at huan.nguyentuong@gmail.com or send me a pull request.
