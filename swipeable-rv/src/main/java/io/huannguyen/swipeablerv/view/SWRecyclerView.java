@@ -385,10 +385,25 @@ public class SWRecyclerView
     }
 
     /**
-     * This method must be called in order to enable swipe-to-dismiss feature on the {@link SWRecyclerView}
+     * This method is called to enable swipe-to-dismiss feature on the {@link SWRecyclerView}
      *
      * @param adapter
      *         The adapter for interacting with the items in the {@link SWRecyclerView}
+     * @param swipeDirection
+     *         The direction that items in the recycler view can be swiped
+     */
+    public void setupSwipeToDismiss(final SWAdapter adapter, final int swipeDirection) {
+        setupSwipeToDismiss(adapter, this, swipeDirection);
+    }
+
+    /**
+     * This method is called to enable swipe-to-dismiss feature on the {@link SWRecyclerView}
+     * with a custom {@link SWSnackBarDataProvider}
+     *
+     * @param adapter
+     *         The adapter for interacting with the items in the {@link SWRecyclerView}
+     * @param snackBarDataProvider
+     *         a SnackBarProvider instance
      * @param swipeDirection
      *         The direction that items in the recycler view can be swiped
      */

@@ -99,14 +99,14 @@ public class SampleAdapter extends DelegateSWAdapter<String> {
     }
 }
 ````
-Your `DWItemDelegate`  should define how the item list is added or removed.
+Your `DWItemDelegate` should define how the item list is added or removed.
 ####Provide your own implementation of `SWAdapter` interface
 In case the pre-implemented adapters do not meet your need, you can consider implementing your own `SWAdapter`.
 
 ###Recycler View Setup
 Set up `SWRecyclerView` just the same way as you do for a normal `RecyclerView`, except that you have to include this line:
 ````
-mRecyclerView.setupSwipeToDismiss(your_adapter_instance, this, swipe_directions);
+mRecyclerView.setupSwipeToDismiss(your_adapter_instance, swipe_directions);
 ````
 This is a key method that sets up the swipe-to-dismiss feature on the recycler view behind the scene. The `swipe_directions` parameter specifies which directions your items can be swiped (to delete). For example, `ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT` indicates that they can be swiped in both directions (left-to-right as well as right-to-left).
 
@@ -121,8 +121,6 @@ A working example looks something like this:
     
     // allow swiping in both directions (left-to-right and right-to-left)
     mRecyclerView.setupSwipeToDelete(mAdapter, ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT);
-
-The second parameter in the `SWRecyclerView.setupSwipeToDismiss` method is a `SWSnackbarDataProvider` that provides all types of data for snack bar (i.e., message, message color, undo action text...). `SWRecyclerView`, by default, implements `SWSnackbarDataProvider` so you can pass `this` as the second parameter in this method. Create your own implementation of this interface and pass an instance of it here in case you need to do customisation.
 
 That's it! Now you've got a recycler view with swipe-to-dismiss feature. How simple and quick that is?
 
@@ -144,6 +142,8 @@ Note: whenever there is 3 version of an attribute, for example `swipe_icon`, `lt
 | swipe\_icon\_margin<br/>ltr\_swipe\_icon\_margin<br/>rtl\_swipe\_icon\_margin                            | Set the margin of the swipe icon (the gap between the swipe icon and the corresponding edge of the item view in which it is displayed in)                                                                                                                                  | dimension | 24dp                                      |
 | swipe\_message<br/>ltr\_swipe\_message<br/>rtl\_swipe\_message                                        | Set the message being displayed next to the swipe icon when an item is being swiped. This is usually for describing what action is to be carried out after an item is swiped in a certain direction                                                                        | string    | Null                                      |
 | swipe\_message\_color<br/>ltr\_swipe\_message\_color<br/>rtl\_swipe\_message\_color                      | Set the swipe message's color                                                                                                                                                                                                                                              | color     | #000                                      |
+| swipe\_message\_font\_path                      | Set the path to the font being used to display the swipe message. If this is not set, the message is displayed with the system's default font.                                                                                                                                                                                                                                              | string     | Null                                     |
+| swipe\_message\_bold                      | used only when the default font is used. Setting this attribute to `true` means that the message would be displayed in bold style                                                                                                                                                                                                                                               | boolean     | false                                     |
 | swipe\_message\_text\_size<br/>ltr\_swipe\_message\_text\_size rtl_swipe_message_text_size          | Set the size of the swipe message                                                                                                                                                                                                                                          | dimension | 14sp                                      |
 | swipe_icon_and_message_gap ltr_swipe_icon_and_message_gap rtl_swipe_icon_and_message_gap | Set the gap between the swipe icon and message                                                                                                                                                                                                                             | dimension | 10dp                                      |
 | allow_undo                                                                               | Set if undo action (on snack bar) is enabled. If this value is set to `false`, the snack bar's related attributes below would be ignored                                                                                                                                   | boolean   | true                                      |
@@ -152,7 +152,7 @@ Note: whenever there is 3 version of an attribute, for example `swipe_icon`, `lt
 | snackbar_background  ltr_snackbar_background  rtl_snackbar_background                    | Set the snack bar's background color                                                                                                                                                                                                                                       | color     | No color  (System's color would be taken) |
 | undo_action_text  ltr_undo_action_text  rtl_undo_action_text                             | Set the action named displayed on the snack bar                                                                                                                                                                                                                            | string    | "UNDO"                                    |
 | undo_action_text_color  ltr_undo_action_text_color  rtl_undo_action_text_color           | Set the color of the undo action text                                                                                                                                                                                                                                      | color     | No color  (System's color would be taken) |
-# More Advanced Settings
+# More Settings
 Above I've shown how to use `SwipeableRV` in the simple case in which the same snack bar message is displayed for all item swiped in the same direction, and no additional processing is made whenever an item is removed or added back (by clicking on the `undo` action button). In this section, I'll show you some additional features of `SwipeableRV `.
 
 ## Specify different snack bar messages for different items
@@ -167,6 +167,21 @@ You can create a class that implements the `SWItemRemovalListener` interface and
 * `onItemTemporarilyRemoved(T item, int position)`: this method is called when an item is swiped to dismiss from a `SWRecyclerView` and a `Snackbar` is shown (if the `allow_undo` attribute is not set to `false`).
 * `onItemPermanentlyRemoved(T item)`: this method is called when the "undoable" period has ellapsed and item can't be added back to the list anymore. This is a suitable place for permanently removing the item from database for instance
 * `onItemAddedBack(T item, int position)`: this method is called when an item is added back to a `SWRecyclerView` after the `undo` button on a `Snackbar` is tapped.
+
+##Programmatically build swipe message
+From the above example and attribute list, we know that the swipe message(s) can be set via XML layout. In case you need to programmatically build the swipe messages, take the following as an example. You can have a look in `SwipeMessageBuilder` for more attributes and functions.
+
+````
+mRecyclerView.getSwipeMessageBuilder()
+                     .withMessage(getString(R.string.new_message))
+                     .withFontPath(getString(R.string.droidSerif))
+                     // build both messages with the same settings
+                     // use SwipeMessageBuilder.LTR or SwipeMessageBuilder.RTL
+                     // if you want to build a message for only one
+                     // swipe direction
+                     .withSwipeDirection(SwipeMessageBuilder.BOTH)
+                     .build();
+````
 
 # Download
 `SwipeableRV` has been uploaded to JCenter. You can download it by adding the following dependency into your project.
