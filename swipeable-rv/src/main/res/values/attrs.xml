@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="swrv">
+        <attr name="border_color" format="color"/>
+        <attr name="border_width" format="dimension"/>
+
+        <attr name="swipe_icon" format="integer"/>
+        <attr name="ltr_swipe_icon" format="integer"/>
+        <attr name="rtl_swipe_icon" format="integer"/>
+
+        <attr name="swipe_background" format="color"/>
+        <attr name="ltr_swipe_background" format="color"/>
+        <attr name="rtl_swipe_background" format="color"/>
+
+        <attr name="swipe_icon_height" format="dimension"/>
+        <attr name="swipe_icon_width" format="dimension"/>
+
+        <attr name="swipe_icon_color" format="color"/>
+        <attr name="ltr_swipe_icon_color" format="color"/>
+        <attr name="rtl_swipe_icon_color" format="color"/>
+
+        <attr name="swipe_icon_margin" format="dimension"/>
+        <attr name="ltr_swipe_icon_margin" format="dimension"/>
+        <attr name="rtl_swipe_icon_margin" format="dimension"/>
+
+        <attr name="swipe_message" format="string"/>
+        <attr name="ltr_swipe_message" format="string"/>
+        <attr name="rtl_swipe_message" format="string"/>
+
+        <attr name="swipe_message_color" format="color"/>
+        <attr name="ltr_swipe_message_color" format="color"/>
+        <attr name="rtl_swipe_message_color" format="color"/>
+
+        <attr name="swipe_message_text_size" format="dimension"/>
+        <attr name="swipe_message_font_path" format="string"/>
+        <attr name="swipe_message_bold" format="boolean"/>
+
+        <attr name="swipe_icon_and_message_gap" format="dimension"/>
+        <attr name="ltr_swipe_icon_and_message_gap" format="dimension"/>
+        <attr name="rtl_swipe_icon_and_message_gap" format="dimension"/>
+
+        <attr name="snackbar_message" format="string"/>
+        <attr name="ltr_snackbar_message" format="string"/>
+        <attr name="rtl_snackbar_message" format="string"/>
+
+        <attr name="snackbar_message_color" format="color"/>
+        <attr name="ltr_snackbar_message_color" format="color"/>
+        <attr name="rtl_snackbar_message_color" format="color"/>
+
+        <attr name="snackbar_background" format="color"/>
+        <attr name="ltr_snackbar_background" format="color"/>
+        <attr name="rtl_snackbar_background" format="color"/>
+
+        <attr name="undo_action_text" format="string"/>
+        <attr name="ltr_undo_action_text" format="string"/>
+        <attr name="rtl_undo_action_text" format="string"/>
+
+        <attr name="undo_action_text_color" format="color"/>
+        <attr name="ltr_undo_action_text_color" format="color"/>
+        <attr name="rtl_undo_action_text_color" format="color"/>
+
+        <attr name="has_border" format="boolean"/>
+        <attr name="allow_undo" format="boolean"/>
+
+    </declare-styleable>
+</resources>

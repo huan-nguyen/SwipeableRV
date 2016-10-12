@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="swrv_default_border_color">#cccccc</color>
+    <color name="swrv_default_swipe_view_background">#bbbbbb</color>
+    <color name="swrv_default_swipe_message_color">#000</color>
+</resources>

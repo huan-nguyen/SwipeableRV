@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SwipeableRV</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="snooze">Snooze</string>
+    <string name="dismissed">Dismissed</string>
+    <string name="snoozed">Snoozed</string>
+    <string name="droidSerif">fonts/DroidSerif-Bold.ttf</string>
+</resources>

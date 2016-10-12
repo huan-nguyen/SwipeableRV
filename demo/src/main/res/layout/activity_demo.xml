@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    android:id="@+id/activity_demo"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:swrv="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="io.huannguyen.swipeablerv.demo.DemoActivity">
+
+    <io.huannguyen.swipeablerv.view.SWRecyclerView
+        android:id="@+id/recycler_view"
+        android:scrollbars="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        swrv:border_color="@android:color/darker_gray"
+        swrv:ltr_swipe_background="#B71C1C"
+        swrv:rtl_swipe_background="#009688"
+        swrv:ltr_swipe_message="@string/dismiss"
+        swrv:rtl_swipe_message="@string/snooze"
+        swrv:swipe_message_text_size="16sp"
+        swrv:swipe_message_color="#fff"
+        swrv:swipe_message_bold="true"
+        swrv:ltr_swipe_icon="@drawable/ic_dismiss"
+        swrv:rtl_swipe_icon="@drawable/ic_snooze"
+        swrv:swipe_icon_color="#FFFFFF"
+        swrv:swipe_icon_height="24dp"
+        swrv:swipe_icon_width="24dp"
+        swrv:swipe_icon_margin="24dp"
+        swrv:ltr_snackbar_message="@string/dismissed"
+        swrv:rtl_snackbar_message="@string/snoozed"
+        swrv:snackbar_message_color="#fff"
+        swrv:ltr_snackbar_background="#B71C1C"
+        swrv:rtl_snackbar_background="#009688"
+        swrv:undo_action_text_color="#fff"
+        swrv:has_border="true"/>
+
+</FrameLayout>
