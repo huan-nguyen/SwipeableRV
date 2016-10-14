@@ -115,8 +115,6 @@ public class SWRecyclerView
 
     private Paint mPaint = new Paint();
 
-    private SwipeMessageBuilder mBuilder;
-
     public SWRecyclerView(Context context) {
         super(context);
     }
@@ -905,11 +903,7 @@ public class SWRecyclerView
      *
      */
     public SwipeMessageBuilder getSwipeMessageBuilder() {
-        if(mBuilder == null) {
-            mBuilder = new SwipeMessageBuilder();
-        }
-
-        return mBuilder;
+        return new SwipeMessageBuilder();
     }
 
     public class SwipeMessageBuilder {
@@ -929,12 +923,27 @@ public class SWRecyclerView
         @ColorInt
         private int mTextColor;
 
-
+        /**
+         * Set message content
+         *
+         * @param message
+         *         message content
+         *
+         * @return SwipeMessageBuilder instance
+         */
         public SwipeMessageBuilder withMessage(String message) {
             mMessage = message;
             return this;
         }
 
+        /**
+         * Set path of the font used for displaying the message
+         *
+         * @param fontPath
+         *         font path
+         *
+         * @return SwipeMessageBuilder instance
+         */
         public SwipeMessageBuilder withFontPath(String fontPath) {
             mFontPath = fontPath;
             return this;
