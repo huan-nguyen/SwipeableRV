@@ -333,7 +333,7 @@ public class SWRecyclerView
         }
 
         // snack bar undo message
-        String undoText = typedArray.getString(R.styleable.swrv_snackbar_message);
+        String undoText = typedArray.getString(R.styleable.swrv_undo_action_text);
 
         if (undoText != null) {
             mLTRUndoActionText = undoText;
