@@ -186,7 +186,7 @@ mRecyclerView.getSwipeMessageBuilder()
 # Download
 `SwipeableRV` has been uploaded to JCenter. You can download it by adding the following dependency into your project.
 ````
-compile 'io.huannguyen.swipeablerv:swipeable-rv:1.0.1'
+compile 'io.huannguyen.swipeablerv:swipeable-rv:1.0.2'
 ````
 # Sample Project
 You can access a sample project using `SwipeableRV` from the `demo` module in this repo.

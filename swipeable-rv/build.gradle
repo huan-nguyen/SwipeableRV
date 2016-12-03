@@ -13,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/huan-nguyen/SwipeableRV'
     gitUrl = 'https://github.com/huan-nguyen/SwipeableRV.git'
 
-    libraryVersion = '1.0.1'
+    libraryVersion = '1.0.2'
 
     developerId = 'huannguyen'
     developerName = 'Huan Nguyen'
@@ -32,7 +32,7 @@ android {
         minSdkVersion 10
         targetSdkVersion 23
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.0.2"
     }
     buildTypes {
         release {
