@@ -21,8 +21,10 @@ public interface SWItemDelegate<TItem> {
      *
      * @param adapterPosition
      *         adapter position as a reference to remove an item
+     * @param direction
+     *         The direction the item was swiped, either {@link #LEFT} or {@link #RIGHT}
      */
-    void removeItemAtAdapterPosition(int adapterPosition);
+    void removeItemAtAdapterPosition(int adapterPosition, int direction);
 
     /**
      * Add an item given an adapter position

@@ -51,14 +51,14 @@ public abstract class DelegateSWAdapter<TItem, TViewHolder extends ViewHolder> e
         displaySnackBarIfNeeded(viewHolder, item, adapterPosition, direction);
 
         if (mItemRemovalListener != null) {
-            mItemRemovalListener.onItemTemporarilyRemoved(item, adapterPosition);
+            mItemRemovalListener.onItemTemporarilyRemoved(item, adapterPosition, direction);
         }
-        mItemDelegate.removeItemAtAdapterPosition(adapterPosition);
+        mItemDelegate.removeItemAtAdapterPosition(adapterPosition, direction);
         notifyItemRemoved(adapterPosition);
     }
 
     private void displaySnackBarIfNeeded(TViewHolder viewHolder, final TItem item, final int adapterPosition,
-                                         int direction) {
+                                         final int direction) {
         if(mSnackBarDataProvider != null && mSnackBarDataProvider.isUndoEnabled()) {
             final Snackbar snackbar = Snackbar
                     .make(mSnackBarDataProvider
@@ -70,7 +70,7 @@ public abstract class DelegateSWAdapter<TItem, TViewHolder extends ViewHolder> e
                             mItemDelegate.addItemWithAdapterPosition(item, adapterPosition);
                             notifyItemInserted(adapterPosition);
                             if (mItemRemovalListener != null) {
-                                mItemRemovalListener.onItemAddedBack(item, adapterPosition);
+                                mItemRemovalListener.onItemAddedBack(item, adapterPosition, direction);
                             }
                         }
                     });
@@ -78,7 +78,7 @@ public abstract class DelegateSWAdapter<TItem, TViewHolder extends ViewHolder> e
                 @Override
                 public void onDismissed(Snackbar snackbar, int event) {
                     if (event != DISMISS_EVENT_ACTION && mItemRemovalListener != null) {
-                        mItemRemovalListener.onItemPermanentlyRemoved(item);
+                        mItemRemovalListener.onItemPermanentlyRemoved(item, direction);
                     }
                 }
             });
