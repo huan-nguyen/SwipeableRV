@@ -32,21 +32,21 @@ import io.huannguyen.swipeablerv.utils.ResourceUtils;
  * To have more flexibility, you can take this class and {@link StandardSWAdapter} as references
  * and build you own implementation of the {@link SWAdapter} interface.
  */
-public abstract class DelegateSWAdapter<T> extends RecyclerView.Adapter<ViewHolder>
-        implements SWAdapter<T> {
+public abstract class DelegateSWAdapter<TItem, TViewHolder extends ViewHolder> extends RecyclerView.Adapter<TViewHolder>
+        implements SWAdapter<TItem, TViewHolder> {
 
-    protected SWItemDelegate<T> mItemDelegate;
-    protected SWItemRemovalListener<T> mItemRemovalListener;
+    protected SWItemDelegate<TItem> mItemDelegate;
+    protected SWItemRemovalListener<TItem> mItemRemovalListener;
     protected SWSnackBarDataProvider mSnackBarDataProvider;
 
-    protected DelegateSWAdapter(@NonNull SWItemDelegate<T> itemDelegate) {
+    protected DelegateSWAdapter(@NonNull SWItemDelegate<TItem> itemDelegate) {
         mItemDelegate = itemDelegate;
     }
 
     @Override
-    public void onItemCleared(final ViewHolder viewHolder, int direction) {
+    public void onItemCleared(final TViewHolder viewHolder, int direction) {
         final int adapterPosition = viewHolder.getAdapterPosition();
-        final T item = mItemDelegate.getItemAtAdapterPosition(adapterPosition);
+        final TItem item = mItemDelegate.getItemAtAdapterPosition(adapterPosition);
 
         displaySnackBarIfNeeded(viewHolder, item, adapterPosition, direction);
 
@@ -57,7 +57,7 @@ public abstract class DelegateSWAdapter<T> extends RecyclerView.Adapter<ViewHold
         notifyItemRemoved(adapterPosition);
     }
 
-    private void displaySnackBarIfNeeded(ViewHolder viewHolder, final T item, final int adapterPosition,
+    private void displaySnackBarIfNeeded(TViewHolder viewHolder, final TItem item, final int adapterPosition,
                                          int direction) {
         if(mSnackBarDataProvider != null && mSnackBarDataProvider.isUndoEnabled()) {
             final Snackbar snackbar = Snackbar
@@ -118,7 +118,7 @@ public abstract class DelegateSWAdapter<T> extends RecyclerView.Adapter<ViewHold
     }
 
     @Override
-    public String getSnackBarMessage(ViewHolder viewHolder, int direction) {
+    public String getSnackBarMessage(TViewHolder viewHolder, int direction) {
         if(mSnackBarDataProvider != null) {
             return mSnackBarDataProvider.getSnackBarMessage(direction);
         }
@@ -127,7 +127,7 @@ public abstract class DelegateSWAdapter<T> extends RecyclerView.Adapter<ViewHold
     }
 
     @Override
-    public String getUndoActionText(ViewHolder viewHolder, int direction) {
+    public String getUndoActionText(TViewHolder viewHolder, int direction) {
         if(mSnackBarDataProvider != null) {
             return mSnackBarDataProvider.getUndoActionText(direction);
         }
@@ -136,7 +136,7 @@ public abstract class DelegateSWAdapter<T> extends RecyclerView.Adapter<ViewHold
     }
 
     @Override
-    public int getSwipeDirs(ViewHolder viewHolder) {
+    public int getSwipeDirs(TViewHolder viewHolder) {
         return -1;
     }
 
@@ -144,15 +144,15 @@ public abstract class DelegateSWAdapter<T> extends RecyclerView.Adapter<ViewHold
         return mItemRemovalListener;
     }
 
-    public void setItemRemovalListener(SWItemRemovalListener<T> itemRemovalListener) {
+    public void setItemRemovalListener(SWItemRemovalListener<TItem> itemRemovalListener) {
         mItemRemovalListener = itemRemovalListener;
     }
 
-    public SWItemDelegate<T> getItemDelegate() {
+    public SWItemDelegate<TItem> getItemDelegate() {
         return mItemDelegate;
     }
 
-    public void setItemDelegate(SWItemDelegate<T> itemDelegate) {
+    public void setItemDelegate(SWItemDelegate<TItem> itemDelegate) {
         this.mItemDelegate = itemDelegate;
     }
 

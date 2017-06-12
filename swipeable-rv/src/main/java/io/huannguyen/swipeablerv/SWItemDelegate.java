@@ -4,7 +4,7 @@ package io.huannguyen.swipeablerv;
  * Created by huannguyen
  */
 
-public interface SWItemDelegate<T> {
+public interface SWItemDelegate<TItem> {
 
     /**
      * Look for an item that matches an adapter position
@@ -14,7 +14,7 @@ public interface SWItemDelegate<T> {
      *
      * @return Item being looked for
      */
-    T getItemAtAdapterPosition(int adapterPosition);
+    TItem getItemAtAdapterPosition(int adapterPosition);
 
     /**
      * Remove an item given a adapter position
@@ -32,5 +32,5 @@ public interface SWItemDelegate<T> {
      * @param adapterPosition
      *         adapter position
      */
-    void addItemWithAdapterPosition(T item, int adapterPosition);
+    void addItemWithAdapterPosition(TItem item, int adapterPosition);
 }
