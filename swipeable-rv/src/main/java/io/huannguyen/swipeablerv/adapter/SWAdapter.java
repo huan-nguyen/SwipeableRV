@@ -11,7 +11,7 @@ import io.huannguyen.swipeablerv.view.SWRecyclerView;
  * Created by huannguyen
  */
 
-public interface SWAdapter<T> {
+public interface SWAdapter<TItem, TViewHolder extends ViewHolder> {
 
     /**
      * Register an adapter with a {@link SWSnackBarDataProvider}
@@ -36,7 +36,7 @@ public interface SWAdapter<T> {
      *         <p>
      *         See {@link #setItemRemovalListener(SWItemRemovalListener)}
      */
-    void onItemCleared(final ViewHolder viewHolder, int direction);
+    void onItemCleared(final TViewHolder viewHolder, int direction);
 
     /**
      * Get a message being displayed on a {@link Snackbar} when an item is swiped away.
@@ -54,7 +54,7 @@ public interface SWAdapter<T> {
      *
      * @return a snack bar message
      */
-    String getSnackBarMessage(ViewHolder viewHolder, int direction);
+    String getSnackBarMessage(TViewHolder viewHolder, int direction);
 
     /**
      * Get the snack bar action text being displayed when an item is swiped away.
@@ -72,7 +72,7 @@ public interface SWAdapter<T> {
      *
      * @return an undo action text
      */
-    String getUndoActionText(ViewHolder viewHolder, int direction);
+    String getUndoActionText(TViewHolder viewHolder, int direction);
 
     /**
      * Get the supported swipe directions for a particular item in a {@link SWRecyclerView}.
@@ -90,9 +90,9 @@ public interface SWAdapter<T> {
      *
      * @return Swipe directions
      */
-    int getSwipeDirs(ViewHolder viewHolder);
+    int getSwipeDirs(TViewHolder viewHolder);
 
     SWItemRemovalListener getItemRemovalListener();
 
-    void setItemRemovalListener(SWItemRemovalListener<T> SWItemRemovalListener);
+    void setItemRemovalListener(SWItemRemovalListener<TItem> SWItemRemovalListener);
 }

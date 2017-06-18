@@ -7,13 +7,12 @@ import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
-
-import java.util.List;
-
-import io.huannguyen.swipeablerv.SWItemRemovalListener;
 import io.huannguyen.swipeablerv.R;
+import io.huannguyen.swipeablerv.SWItemRemovalListener;
 import io.huannguyen.swipeablerv.SWSnackBarDataProvider;
 import io.huannguyen.swipeablerv.utils.ResourceUtils;
+
+import java.util.List;
 
 /**
  * Created by huannguyen
@@ -26,20 +25,21 @@ import io.huannguyen.swipeablerv.utils.ResourceUtils;
  * Subclass this class if that suits your implementation. Otherwise consider using {@link
  * DelegateSWAdapter} which does not directly manipulate the items if you need more flexibility.
  */
-public abstract class StandardSWAdapter<T> extends RecyclerView.Adapter<ViewHolder> implements
-                                                                                     io.huannguyen.swipeablerv.adapter.SWAdapter<T> {
-    protected List<T> mItems;
-    protected SWItemRemovalListener<T> mItemRemovalListener;
+public abstract class StandardSWAdapter<TItem, TViewHolder extends ViewHolder> extends RecyclerView.Adapter<TViewHolder>
+   implements io.huannguyen.swipeablerv.adapter.SWAdapter<TItem, TViewHolder>
+{
+    protected List<TItem> mItems;
+    protected SWItemRemovalListener<TItem> mItemRemovalListener;
     protected SWSnackBarDataProvider mSnackBarDataProvider;
 
-    protected StandardSWAdapter(List<T> items) {
+    protected StandardSWAdapter(List<TItem> items) {
         mItems = items;
     }
 
     @Override
-    public void onItemCleared(final ViewHolder viewHolder, final int direction) {
+    public void onItemCleared(final TViewHolder viewHolder, final int direction) {
         final int adapterPosition = viewHolder.getAdapterPosition();
-        final T item = mItems.get(adapterPosition);
+        final TItem item = mItems.get(adapterPosition);
 
         displaySnackBarIfNeeded(viewHolder, item, adapterPosition, direction);
 
@@ -50,7 +50,7 @@ public abstract class StandardSWAdapter<T> extends RecyclerView.Adapter<ViewHold
         notifyItemRemoved(adapterPosition);
     }
 
-    private void displaySnackBarIfNeeded(ViewHolder viewHolder, final T item, final int adapterPosition, int direction) {
+    private void displaySnackBarIfNeeded(TViewHolder viewHolder, final TItem item, final int adapterPosition, int direction) {
         if (mSnackBarDataProvider != null && mSnackBarDataProvider.isUndoEnabled()) {
             final Snackbar snackbar = Snackbar
                     .make(mSnackBarDataProvider.getView(), getSnackBarMessage(viewHolder, direction),
@@ -110,7 +110,7 @@ public abstract class StandardSWAdapter<T> extends RecyclerView.Adapter<ViewHold
     }
 
     @Override
-    public String getSnackBarMessage(ViewHolder viewHolder, int direction) {
+    public String getSnackBarMessage(TViewHolder viewHolder, int direction) {
         if(mSnackBarDataProvider != null) {
             return mSnackBarDataProvider.getSnackBarMessage(direction);
         }
@@ -119,7 +119,7 @@ public abstract class StandardSWAdapter<T> extends RecyclerView.Adapter<ViewHold
     }
 
     @Override
-    public String getUndoActionText(ViewHolder viewHolder, int direction) {
+    public String getUndoActionText(TViewHolder viewHolder, int direction) {
         if(mSnackBarDataProvider != null) {
             return mSnackBarDataProvider.getUndoActionText(direction);
         }
@@ -128,7 +128,7 @@ public abstract class StandardSWAdapter<T> extends RecyclerView.Adapter<ViewHold
     }
 
     @Override
-    public int getSwipeDirs(ViewHolder viewHolder) {
+    public int getSwipeDirs(TViewHolder viewHolder) {
         return -1;
     }
 
@@ -136,7 +136,7 @@ public abstract class StandardSWAdapter<T> extends RecyclerView.Adapter<ViewHold
         return mItemRemovalListener;
     }
 
-    public void setItemRemovalListener(SWItemRemovalListener<T> itemRemovalListener) {
+    public void setItemRemovalListener(SWItemRemovalListener<TItem> itemRemovalListener) {
         mItemRemovalListener = itemRemovalListener;
     }
 

@@ -6,7 +6,7 @@ import io.huannguyen.swipeablerv.view.SWRecyclerView;
  * Created by huannguyen
  */
 
-public interface SWItemRemovalListener<T> {
+public interface SWItemRemovalListener<TItem> {
     /**
      * Method invoked when an item is temporarily removed from a {@link SWRecyclerView}.
      * <p>
@@ -17,7 +17,7 @@ public interface SWItemRemovalListener<T> {
      * @param position
      *         The position of the item being temporarily removed
      */
-    void onItemTemporarilyRemoved(T item, int position);
+    void onItemTemporarilyRemoved(TItem item, int position);
 
     /**
      * Method invoked when it is no longer possible to add the previously removed item back into a {@link SWRecyclerView}.
@@ -26,7 +26,7 @@ public interface SWItemRemovalListener<T> {
      *
      * @param item    The item being permanently removed
      */
-    void onItemPermanentlyRemoved(T item);
+    void onItemPermanentlyRemoved(TItem item);
 
     /**
      * Method invoked when an item associated to the given view holder is added back to a {@link SWRecyclerView}.
@@ -36,5 +36,5 @@ public interface SWItemRemovalListener<T> {
      * @param position
      *         The position of the item being added back
      */
-    void onItemAddedBack(T item, int position);
+    void onItemAddedBack(TItem item, int position);
 }
